@@ -1,0 +1,60 @@
+// @use '../../../scss/' as *;
+// @use 'sass:math';
+
+
+// .champion {
+//     &-list {
+//         .swiper-slide {
+//             width: 450px;
+//             margin-right: 10px;   
+//             pointer-events: visible;
+//             overflow: visible;
+//             transform: translateX(200px);
+//             opacity: 0;
+//             transition: transform .5s ease, opacity .5s ease;
+//             transition-delay: 0s;
+//         }
+//     }
+
+//     &.active &-list {
+//         $total-slides: 10; // Número total de diapositivas
+    
+//         @for $i from 1 through $total-slides {
+//           .swiper-slide:nth-child(#{$i}) {
+//             transform: translateX(calc((100% + 20px) * (#{$i} - 1)));
+//             opacity: 1;
+//             transition-delay: #{math.div($i, 2)}s;
+//           }
+//         }
+//     }
+// }
+
+@use "../../../scss/" as *;
+@use "sass:math";
+
+.champion {
+    &-list {
+        .swiper-slide {
+            width: 450px;
+            pointer-events: visible;
+            overflow: visible;
+            transform: translateX(200px);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            transition-delay: 0s;
+        }
+    }
+
+    &.active &-list {
+        .swiper-slide {
+            transform: translateX(0);
+            opacity: 1;
+
+            @for $i from 1 through 10 {
+                &:nth-child(#{$i}) {
+                    transition-delay: #{math.div($i, 2)}s;
+                }
+            }
+        }
+    }
+}
